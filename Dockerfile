@@ -40,7 +40,12 @@ RUN lb config --debian-installer live \
         --archive-areas main contrib non-free \
         --firmware-chroot true \
         --firmware-binary true \
-        --image-name lxde-min
+        --image-name lxde-min \
+        --system live \
+        --initsystem systemd \
+        --initsystem none \
+        --bootloader syslinux \
+        --apt-recommends true
 RUN echo 'lxdm' > config/packages/desktop.list.chroot; \
      echo 'lxpanel' >> config/packages/desktop.list.chroot; \
      echo 'lxde-desktop' >> config/packages/desktop.list.chroot; \
