@@ -11,12 +11,13 @@ build: docker
 		--tty \
 		--name lxde-live-min \
 		lxde-live-min
+	make copy
 
 copy:
-	docker cp lxde-live-min:/home/livebuilder/live/live-image-amd64.hybrid.iso ../
+	docker cp lxde-live-min:/home/livebuilder/live/lxde-min-amd64.hybrid.iso ../
 
 ls:
-	docker exec -t lxde-live-min ls -lah *
+	docker exec -t lxde-live-min ls -lah
 
 wd:
 	docker exec -t lxde-live-min pwd
