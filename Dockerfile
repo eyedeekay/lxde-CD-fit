@@ -57,6 +57,9 @@ RUN echo 'lxdm' > config/packages/desktop.list.chroot; \
      echo 'firefox' >> config/packages/desktop.list.chroot; \
      echo 'gimp' >> config/packages/desktop.list.chroot; \
      echo 'kodi' >> config/packages/desktop.list.chroot; \
+     echo 'firmware-linux-free' >> config/packages/desktop.list.chroot; \
+     echo 'firmware-linux' >> config/packages/desktop.list.chroot; \
+     echo 'kodi' >> config/packages/desktop.list.chroot; \
      echo 'libreoffice' >> config/packages/desktop.list.chroot; \
      cd config/packages && ln -s desktop.list.chroot desktop.list.binary
 CMD sudo -E lb build
