@@ -36,12 +36,14 @@ RUN chown -R livebuilder:livebuilder /home/livebuilder/live
 RUN lb init -t 3 5; true
 USER livebuilder
 RUN lb config --debian-installer live \
+        --distribution sid \
         --archive-areas main contrib non-free \
         --firmware-chroot true \
         --firmware-binary true \
         --image-name lxde-min
 RUN echo 'lxdm' > config/packages/desktop.list.chroot; \
      echo 'lxpanel' >> config/packages/desktop.list.chroot; \
+     echo 'lxde-desktop' >> config/packages/desktop.list.chroot; \
      echo 'lxlauncher' >> config/packages/desktop.list.chroot; \
      echo 'lxterminal' >> config/packages/desktop.list.chroot; \
      echo 'lxsession' >> config/packages/desktop.list.chroot; \
