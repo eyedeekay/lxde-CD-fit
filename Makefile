@@ -1,4 +1,12 @@
 
+info:
+	@echo ""
+	@echo " docker:"
+	@echo " build:"
+	@echo " copy:"
+	@echo " ls:"
+	@echo " wd:"
+	@echo " clean:"
 
 docker:
 	docker build --force-rm -f Dockerfile -t lxde-live-min .

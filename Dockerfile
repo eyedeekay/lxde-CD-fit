@@ -33,11 +33,11 @@ RUN echo 'livebuilder ALL=(ALL) NOPASSWD: ALL' | tee -a /etc/sudoers
 RUN chown -R livebuilder:livebuilder /home/livebuilder/
 WORKDIR /home/livebuilder/live
 RUN chown -R livebuilder:livebuilder /home/livebuilder/live
-RUN lb init -t 3 5; true
 USER livebuilder
+RUN sudo -E lb init -t 3 5; true
 RUN lb config --debian-installer live \
         --distribution sid \
-        --archive-areas main contrib non-free \
+        --archive-areas 'main contrib non-free' \
         --firmware-chroot true \
         --firmware-binary true \
         --image-name lxde-min \
@@ -45,21 +45,19 @@ RUN lb config --debian-installer live \
         --initsystem systemd \
         --initsystem none \
         --bootloader syslinux \
-        --apt-recommends true
-RUN echo 'lxdm' > config/packages/desktop.list.chroot; \
-     echo 'lxpanel' >> config/packages/desktop.list.chroot; \
-     echo 'lxde-desktop' >> config/packages/desktop.list.chroot; \
-     echo 'lxlauncher' >> config/packages/desktop.list.chroot; \
-     echo 'lxterminal' >> config/packages/desktop.list.chroot; \
-     echo 'lxsession' >> config/packages/desktop.list.chroot; \
-     echo 'networkmanager' >> config/packages/desktop.list.chroot; \
-     echo 'apper' >> config/packages/desktop.list.chroot; \
-     echo 'firefox' >> config/packages/desktop.list.chroot; \
-     echo 'gimp' >> config/packages/desktop.list.chroot; \
-     echo 'kodi' >> config/packages/desktop.list.chroot; \
-     echo 'firmware-linux-free' >> config/packages/desktop.list.chroot; \
-     echo 'firmware-linux' >> config/packages/desktop.list.chroot; \
-     echo 'kodi' >> config/packages/desktop.list.chroot; \
-     echo 'libreoffice' >> config/packages/desktop.list.chroot; \
-     cd config/packages && ln -s desktop.list.chroot desktop.list.binary
+        --apt-recommends true \
+        --debootstrap-options '--components=main,contrib,non-free'
+RUN echo 'lxdm' > config/package-lists/desktop.list.chroot; \
+     echo 'lxpanel' >> config/package-lists/desktop.list.chroot; \
+     echo 'lxlauncher' >> config/package-lists/desktop.list.chroot; \
+     echo 'lxterminal' >> config/package-lists/desktop.list.chroot; \
+     echo 'lxsession' >> config/package-lists/desktop.list.chroot; \
+     echo 'wicd-gtk' >> config/package-lists/desktop.list.chroot; \
+     echo 'apper' >> config/package-lists/desktop.list.chroot; \
+     echo 'firefox' >> config/package-lists/desktop.list.chroot; \
+     echo 'gimp' >> config/package-lists/desktop.list.chroot; \
+     echo 'kodi' >> config/package-lists/desktop.list.chroot; \
+     echo 'firmware-linux-free' >> config/package-lists/desktop.list.chroot; \
+     echo 'firmware-linux' >> config/package-lists/desktop.list.chroot; \
+     cd config/package-lists && ln -s desktop.list.chroot desktop.list.binary
 CMD sudo -E lb build
