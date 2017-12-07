@@ -8,4 +8,4 @@ by running:
 
 which will result in a cd image named lxde-min-amd64.hybrid.iso in the parent
 directory. It has lxde-desktop packages, KDE's apper app store, Firefox, the
-GIMP, KODI media center, and LibreOffice.
+GIMP, and KODI media center.
