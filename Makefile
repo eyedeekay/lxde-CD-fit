@@ -9,12 +9,16 @@ info:
 	@echo " clean:"
 
 docker:
-	docker build --force-rm -f Dockerfile -t lxde-live-min .
+	docker build --force-rm \
+		-f Dockerfile \
+		--build-arg "CACHING_PROXY"="$(CACHING_PROXY)" \
+		-t lxde-live-min .
 
 build: docker
 	docker run -i \
 		--cap-add=SYS_ADMIN \
 		--device /dev/loop0 \
+		--env "CACHING_PROXY"="$(CACHING_PROXY)" \
 		--privileged \
 		--tty \
 		--name lxde-live-min \

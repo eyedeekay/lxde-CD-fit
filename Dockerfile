@@ -36,14 +36,15 @@ RUN chown -R livebuilder:livebuilder /home/livebuilder/live
 USER livebuilder
 RUN sudo -E lb init -t 3 5; true
 RUN lb config --debian-installer live \
-        --distribution sid \
+        --distribution jessie \
         --archive-areas 'main contrib non-free' \
         --firmware-chroot true \
         --firmware-binary true \
         --image-name lxde-min \
         --system live \
-        --initsystem systemd \
+        --initsystem runit \
         --bootloader syslinux \
+        --debootstrap-options '--variant=minbase --components=main,contrib,non-free' \
         --apt-recommends false
 RUN echo 'lxdm' > config/package-lists/desktop.list.chroot; \
      echo 'lxpanel' >> config/package-lists/desktop.list.chroot; \
