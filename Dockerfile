@@ -59,12 +59,10 @@ RUN echo 'Package: *' > config/archives/backports.pref.chroot; \
      echo 'Pin-Priority: 999' >> config/archives/backports.pref.chroot; \
      cd config/archives/ && ln -s backports.pref.chroot backports.pref.binary
 
-RUN echo 'lxpanel' >> config/package-lists/desktop.list.chroot; \
-     echo 'lxlauncher' >> config/package-lists/desktop.list.chroot; \
-     echo 'lxterminal' >> config/package-lists/desktop.list.chroot; \
-     echo 'lxsession' >> config/package-lists/desktop.list.chroot; \
+RUN echo 'lxde-core' >> config/package-lists/desktop.list.chroot; \
      echo 'wicd-gtk' >> config/package-lists/desktop.list.chroot; \
      echo 'gimp' >> config/package-lists/desktop.list.chroot; \
+     echo 'kodi' >> config/package-lists/desktop.list.chroot; \
      echo 'iceweasel' >> config/package-lists/desktop.list.chroot; \
      echo 'firmware-linux-free' >> config/package-lists/desktop.list.chroot; \
      echo 'firmware-linux' >> config/package-lists/desktop.list.chroot; \
