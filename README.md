@@ -7,5 +7,5 @@ by running:
         make build
 
 which will result in a cd image named lxde-min-amd64.hybrid.iso in the parent
-directory. It has lxde-desktop packages, KDE's apper app store, Firefox, the
-GIMP, and KODI media center.
+directory. It has just as much lxde as I could fit, lightDM, KDE's apper app
+store, Firefox, the GIMP, and KODI media center.
