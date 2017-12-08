@@ -42,10 +42,23 @@ RUN lb config --debian-installer live \
         --firmware-binary true \
         --image-name lxde-min \
         --system live \
-        --initsystem runit \
+        --initsystem systemd \
         --bootloader syslinux \
         --debootstrap-options '--variant=minbase --components=main,contrib,non-free' \
+        --backports true \
+        --updates true \
+        --security true \
         --apt-recommends false
+
+RUN echo 'Package: *' > config/archives/backports.pref.chroot; \
+     echo 'Pin: release n=jessie-backports' >> config/archives/backports.pref.chroot; \
+     echo 'Pin-Priority: 901' >> config/archives/backports.pref.chroot; \
+     echo '' >> config/archives/backports.pref.chroot; \
+     echo 'Package: *' >> config/archives/backports.pref.chroot; \
+     echo 'Pin: release n=jessie' >> config/archives/backports.pref.chroot; \
+     echo 'Pin-Priority: 999' >> config/archives/backports.pref.chroot; \
+     cd config/archives/ && ln -s backports.pref.chroot backports.pref.binary
+
 RUN echo 'lxpanel' >> config/package-lists/desktop.list.chroot; \
      echo 'lxlauncher' >> config/package-lists/desktop.list.chroot; \
      echo 'lxterminal' >> config/package-lists/desktop.list.chroot; \
@@ -56,4 +69,5 @@ RUN echo 'lxpanel' >> config/package-lists/desktop.list.chroot; \
      echo 'firmware-linux-free' >> config/package-lists/desktop.list.chroot; \
      echo 'firmware-linux' >> config/package-lists/desktop.list.chroot; \
      cd config/package-lists && ln -s desktop.list.chroot desktop.list.binary
+
 CMD sudo -E lb build
