@@ -52,7 +52,7 @@ RUN echo 'lxpanel' >> config/package-lists/desktop.list.chroot; \
      echo 'lxsession' >> config/package-lists/desktop.list.chroot; \
      echo 'wicd-gtk' >> config/package-lists/desktop.list.chroot; \
      echo 'gimp' >> config/package-lists/desktop.list.chroot; \
-     echo 'firefox' >> config/package-lists/desktop.list.chroot; \
+     echo 'iceweasel' >> config/package-lists/desktop.list.chroot; \
      echo 'firmware-linux-free' >> config/package-lists/desktop.list.chroot; \
      echo 'firmware-linux' >> config/package-lists/desktop.list.chroot; \
      cd config/package-lists && ln -s desktop.list.chroot desktop.list.binary
