@@ -46,12 +46,13 @@ RUN lb config --debian-installer live \
         --bootloader syslinux \
         --debootstrap-options '--variant=minbase --components=main,contrib,non-free' \
         --apt-recommends false
-RUN echo 'lxdm' > config/package-lists/desktop.list.chroot; \
-     echo 'lxpanel' >> config/package-lists/desktop.list.chroot; \
+RUN echo 'lxpanel' >> config/package-lists/desktop.list.chroot; \
      echo 'lxlauncher' >> config/package-lists/desktop.list.chroot; \
      echo 'lxterminal' >> config/package-lists/desktop.list.chroot; \
      echo 'lxsession' >> config/package-lists/desktop.list.chroot; \
      echo 'wicd-gtk' >> config/package-lists/desktop.list.chroot; \
+     echo 'gimp' >> config/package-lists/desktop.list.chroot; \
+     echo 'firefox' >> config/package-lists/desktop.list.chroot; \
      echo 'firmware-linux-free' >> config/package-lists/desktop.list.chroot; \
      echo 'firmware-linux' >> config/package-lists/desktop.list.chroot; \
      cd config/package-lists && ln -s desktop.list.chroot desktop.list.binary
